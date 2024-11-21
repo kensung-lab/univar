@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    image: nest-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_NAME=mydatabase
+    depends_on:
+      - db
+    volu
+
+
+NEST_PORT=8080
+#KeyCloak Setting
+KEYCLOAK_AUTH_SERVER_URL=https://idp.dev.hkgi-dataplatform.com/realms/univar
+KEYCLOAK_CLIENT_ID=univar-backend
+KEYCLOAK_CLIENT_SECRET=OyialPvcjLHeZREKPEXWTt9jxcrudL1y
+NODE_TLS_REJECT_UNAUTHORIZED='0'
+# Mongo Setting
+MONGO_BASE_URL=mongodb://admin:password123@137.189.132.195:27217/
+# S3 Setting
+S3_REGION=ap-east-1
+# CRAM file setting
+CRAM_S3_BUCKET_URL=qualview-production-site
+CRAM_S3_TIMEOUT=1800 # in second
+CRAM_FILE_PREFIX=cram/
+CRAM_FILE_SUFFIX=.cram
+CRAM_IDX_FILE_SUFFIX=.cram.crai
+# Export Setting
+EXPORT_CHUNK_SIZE=10000
+EXPORT_LOCATION=backend/
+EXPORT_S3_BUCKET_URL=bab-dev-data-store
+# Logging Setting
+PERFORMANCE_LOG=true
+CONSOLE_LOG=false
+# Email Setting
+SMTP_HOST=email-smtp.ap-southeast-1.amazonaws.com
+SMTP_PORT=465
+SMTP_USER=AKIATSAVCUPGD66RM27X
+SMTP_PASS=BIEkgQ9ql+jwqI/Ju6p6A38rxn0tYsymzNm+9pTe7CtX
+ERROR_RECIPIENT=jytcheng@genomics.org.hk
+# Development Mode
+DEV_MODE=true
+CLUSTER_SIZE=1
+PIPELINE_BUCKET=bab-dev-pipeline-artefact-store
+PIPELINE_DATA_KEY=data/raw/
+PIPELINE_CONTROL_KEY=control/
+# Argo Setting
+ARGO_TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJWZ0Y4akJYbEktMVpjS0FGSDRlbmZTWElnOV9WNDBzMjQ3cjl5WlpOSW8ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJhcmdvIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImFyZ28tYWRtaW4uc2VydmljZS1hY2NvdW50LXRva2VuIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFyZ28tYWRtaW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI3ZTZkNzIzNy01MmEwLTQ2Y2MtYjdmNy1jNmU4OWYxM2MxZDUiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6YXJnbzphcmdvLWFkbWluIn0.hcKPOWhhGlYzLBPxowVUCQoziLKT-u6mLkYoqf-lXpufKfKYVNU2WNJBFOavW44sxiAx472c2oAkYTZdS6w4vkda_skcY3958xaZoMOUfad6V68XUSIGeKGz6EGpgCih92CCwRdy5xRNv464XtT4dEsEvdMZci37BLGN2x2ADsM97V6oChexE-5aQs-9RrJrEU2Z92ZJTJd1jugwzbIFYCUJaUUTSscUPtMWssqpd5ayq07vHRL8vQHAi2QjPm-lSKUdgNaGWntotUBwX2P8Kt2k1HV5cSmh2I1gP4-rMBwEnIdAlJsqbI2QSuHB1I3YFIM2ucedPhcphhN3PY2zcg
+ARGO_WORKFLOW_BASE_URL=https://argo.bab.dev.hkgi-dataplatform.com/
+ARGO_SUBMIT_WORKFLOW_URL=api/v1/workflows/argo

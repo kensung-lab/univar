@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  web-server:
+    platform: "linux/amd64"
+    image: bab-frontend:demo
+    environment:
+      - VITE_SSO_URL=https://idp.dev.hkgi-dataplatform.com
+      - VITE_SSO_REALM=univar
+      - VITE_SSO_CLIENT_ID=univar-frontend
+      - VITE_BACKEND_URL=http://137.189.132.195:8080
+      - VITE_CRAM_URL=https://test-univar.bab.dev.hkgi-dataplatform.com/s3
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+    networks:
+      - bab_network
+      - mongo_default
+
+networks:
+  bab_network:
+    external: true
+  mongo_default:
+    external: true
